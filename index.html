@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de alta</title>
+    <link rel="stylesheet" href="./stylesheet.css">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+        <header>
+            <h1>formulario información alta telefónica</h1>
+        </header>
+        <main>
+            <form action="./form_sent.html" id="form" action="https://formspree.io/f/xpzbdral" method="POST">
+                <fieldset class="datos-personales">
+                    <legend>datos personales</legend>
+                    <label for="nombre">nombre:
+                        <input name="nombre" type="text" maxlength="30" required></input>
+                    </label>
+
+                    <label for="apellidos">apellidos:
+                        <input name="apellidos" type="text" maxlength="60" required></input>
+                    </label>
+
+                    <label for="direccion">dirección:
+                        <input maxlength="60" name="direccion" type="text"></input>
+                    </label>
+
+                    <label for="postal">código postal:
+                        <input 
+                        required
+                        onfocusout="validationCp();"
+                        class="postal" 
+                        id="postal" 
+                        name="postal" 
+                        maxlength="5"
+                        pattern="[0-9]{5}"
+                        type="text"
+                        ></input>
+                        
+                    </label>
+                    <p id="showedText"></p>
+
+                    <label for="localidad">localidad:
+                        <input 
+                        required
+                        onblur="validation()"
+                        onchange="validationCity()"
+                        id="localidad" 
+                        class="localidad"
+                        name="localidad" 
+                        type="text"></input>
+                    </label>
+                </fieldset>
+
+                <fieldset class="tipo-contratacion">
+                    <legend>tipo de contratación</legend>
+                    <input type="radio" name="tipo-cotrato" value="0" class="input-contratacion" checked>nueva
+                    contratación</input>
+                    <input type="radio" name="tipo-cotrato" value="1" class="input-contratacion">portabilidad</input>
+                    <input type="radio" name="tipo-cotrato" value="2" class="input-contratacion">cambio de
+                    contrato</input>
+
+                    <label for="compania-actual">elija la compañía actual
+                        <select name="compania-actual" id="" required>
+                            <option value="movistar">Movistar</option>
+                            <option value="orange">Orange</option>
+                            <option value="vodafone">Vodafone</option>
+                            <option value="yoigo">Yoigo</option>
+                            <option value="nada">No Tengo Ninguna Compañía</option>
+                        </select>
+                    </label>
+                    <label for="compania-actual-portab">en caso de portabilidad, elija la nueva compañía
+                        <select name="compania-actual-portab" id="" required>
+                            <option value="movistar">Movistar</option>
+                            <option value="orange">Orange</option>
+                            <option value="vodafone">Vodafone</option>
+                            <option value="yoigo">Yoigo</option>
+                        </select>
+                    </label>
+                </fieldset>
+                <fieldset class="datos-bancarios">
+                    <legend>datos bancarios</legend>
+                    <label for="pais">país:
+                        <input 
+                        id="pais" 
+                        name="pais" 
+                        type="text" 
+                        value="ES" 
+                        disabled> (solo válido ES)
+                    </label>
+                    <label for="control">control IBAN:
+                        <input 
+                        required
+                        id="control" 
+                        name="control" 
+                        type="text" 
+                        maxlength="2"
+                        pattern="[0-9]{2}"> (dos dígitos)
+                    </label>
+                    <label for="entidad">entidad:
+                        <input 
+                        required
+                        id="entidad" 
+                        name="entidad" 
+                        type="text" 
+                        maxlength="4"
+                        pattern="[0-9]{4}"> (cuatro dígitos)
+                    </label>
+                    <label for="sucursal">sucursal:
+                        <input 
+                        required
+                        id="sucursal" 
+                        name="sucursal" 
+                        type="text" 
+                        maxlength="4"
+                        pattern="[0-9]{4}"> (cuatro dígitos)
+                    </label>
+                    <label for="dc">DC:
+                        <input 
+                        required
+                        id="dc" 
+                        name="dc" 
+                        type="text" 
+                        maxlength="2"
+                        pattern="[0-9]{2}"> (dos dígitos)
+                    </label>
+                    <label for="cuenta">cuenta:
+                        <input 
+                        required
+                        id="cuenta" 
+                        name="cuenta" 
+                        type="text" 
+                        maxlength="10"
+                        pattern="[0-9]{10}"> (diez dígitos)
+                    </label>
+                </fieldset>
+                <fieldset class="datos-estadisticos">
+                    <legend>datos estadísticos - ¿cómo nos conoció?</legend>
+                    <ul>
+                        <li> 
+                            <input type="checkbox" value="tv" class="input-estadisticos">a través de la TV</input>
+                        </li>
+                        <li> 
+                            <input type="checkbox" value="radio">a través de la radio
+                        </li>
+                        <li> 
+                            <input type="checkbox" value="internet">a través de internet
+                        </li>
+                        <li>
+                            <input type="checkbox" value="otros">otros
+                        </li>
+                        
+
+                    </ul>
+                </fieldset>
+                <fieldset class="valoracion">
+                    <input 
+                    required
+                    id="valoracion" 
+                    type="range" 
+                    min="1" 
+                    max="4" 
+                    value="1">valoración [1-4]
+                    <label for="date">fecha de la encuesta
+                        <input id="date" name="date" type="date" value="2019-01-01">
+                    </label>
+
+                </fieldset>
+                <div class="main-btn-wrapper">
+                    <a href="./form_sent.html"><button class="main-btn submit-btn">Enviar datos</button></a>
+                    <input class="reset-btn main-btn" type="reset" value="Borrar datos"></input>
+                </div>
+                <div class="secondary-btn-wrapper">
+                    <button class="secondary-btn valor-btn" onclick="showPoints()">mostrar valoración</button>
+                    <button class="secondary-btn cuenta-btn" onclick="showAccountNumber()">mostrar cuenta</button>
+                    <button class="secondary-btn dia-btn" onclick="showDate()">mostrar día semana</button>
+                </div>
+            </form>
+
+        </main>
+        <footer>
+            desarrollado por María Zubeldia
+        </footer>
+    </div>
+    <script src="./main.js"></script>
+</body>
+
+</html>
